@@ -42,7 +42,7 @@ class PortfolioConstruction:
             new_add = ret_df.iloc[i, :].sort_values(ascending=False)[:number_of_replacements].index.values.tolist()
             portfolio = portfolio + new_add
             
-        periodic_return_adjusted = [adj - (SLIPPAGE + TRADING_COST) for adj in periodic_return]
+        periodic_return_adjusted = [adj - ((2 * r) + (SLIPPAGE + TRADING_COST)) for adj in periodic_return]
         
         self.portfolio_periodic_returns["Period"] = np.arange(1, len(ret_df))
         self.portfolio_periodic_returns["Period Returns"] = np.array(periodic_return_adjusted)
